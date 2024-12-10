@@ -1,0 +1,53 @@
+import pandas as pd
+import numpy as np
+from scipy.stats import pearsonr
+
+# Define data
+data = {
+    'VariableA': [1, 2, 3, 4, 5, 6],
+    'VariableB': [2, 3, 4, 5, 6, 7]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
+# Function to calculate correlation
+def calculate_correlation(df, col1, col2):
+    correlation, _ = pearsonr(df[col1], df[col2])
+    return correlation
+
+# Function to calculate joint probability
+def joint_probability(df, event_A, event_B):
+    joint_df = df[(df['VariableA'] == event_A) & (df['VariableB'] == event_B)]
+    joint_prob = len(joint_df) / len(df)
+    return joint_prob
+
+# Function to calculate marginal probability
+def marginal_probability(df, event, variable):
+    marginal_df = df[df[variable] == event]
+    marginal_prob = len(marginal_df) / len(df)
+    return marginal_prob
+
+# Function to calculate conditional probability
+def conditional_probability(df, event_A, event_B):
+    joint_prob = joint_probability(df, event_A, event_B)
+    marginal_prob_B = marginal_probability(df, event_B, 'VariableB')
+    if marginal_prob_B == 0:
+        return 0
+    return joint_prob / marginal_prob_B
+
+# Perform calculations
+correlation = calculate_correlation(df, 'VariableA', 'VariableB')
+print("Correlation between VariableA and VariableB:", correlation)
+
+joint_prob = joint_probability(df, 3, 4)
+print("Joint Probability P(A=3 and B=4):", joint_prob)
+
+marginal_prob_A = marginal_probability(df, 3, 'VariableA')
+print("Marginal Probability P(A=3):", marginal_prob_A)
+
+marginal_prob_B = marginal_probability(df, 4, 'VariableB')
+print("Marginal Probability P(B=4):", marginal_prob_B)
+
+cond_prob = conditional_probability(df, 3, 4)
+print("Conditional Probability P(A=3 | B=4):", cond_prob)
