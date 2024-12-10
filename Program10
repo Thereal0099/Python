@@ -1,0 +1,32 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+data={
+    'age':[25,30,35,40,45,50,55,60,65,70,],
+    'salary':[20000,25000,30000,35000,40000,45000,50000,55000,60000,65000,],
+    'department':['HR','IT','FINANCE','IT','FINANCE','HR','HR','FINANCE','IT','FINANCE']
+}
+df=pd.DataFrame(data)
+plt.figure(figsize=(8,5))
+plt.scatter(df['age'],df['salary'],color='blue',marker='o')
+plt.title("scatter plot of avg vs salary")
+plt.xlabel("age")
+plt.ylabel("salary")
+plt.grid(True)
+plt.show()
+
+plt.figure(figsize=(8,5))
+plt.hist(df['age'],bins=5,color='green',edgecolor='black')
+plt.title("Histogram of age distribution")
+plt.xlabel("age")
+plt.ylabel("frequency")
+plt.grid(axis='y')
+plt.show()
+
+plt.figure(figsize=(8,5))
+department_counts=df['department'].value_counts()
+plt.bar(department_counts.index,department_counts.values,color='orange',edgecolor='black')
+plt.title("bar plot of department counts")
+plt.xlabel("department")
+plt.ylabel("number of employees")
+plt.grid(axis='y')
+plt.show()
