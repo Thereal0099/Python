@@ -1,0 +1,26 @@
+class list_manager:
+    def __init__(self):
+        self.list=[]
+    def insert(self,list):
+        self.list.append(element)
+    def remove(self,list):
+        self.list.remove(element)
+    def display(self,list):
+        print("the elements of list are:",self.list)
+ele=list_manager()
+while(1):
+    print("\n 1.append 2.delete 3.display 4.exit")
+    choice=int(input("enter your choice:"))
+    if(choice==1):
+        element=int(input("enter element:"))
+        ele.insert(list)
+    elif(choice==2):
+        element=int(input("enter the element to be deleted:"))
+        ele.remove(list)
+    elif(choice==3):
+        ele.display(list)
+    elif(choice==4):
+        exit(0)
+    else:
+        print("invalid choice")
+        
